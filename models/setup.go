@@ -8,7 +8,7 @@ import (
 var DB *gorm.DB
 
 func ConnectDatabase() {
-	dsn := "host=localhost user =postgres dbname=BagManager port=5432 sslmode=disable timezone=NorthAmerica/Miami"
+	dsn := "host=localhost user=postgres dbname=BagManager port=5432 sslmode=disable timezone=NorthAmerica/Miami"
 	database, err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
 
 	if err != nil {

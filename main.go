@@ -6,6 +6,8 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+// hello
+
 func main() {
 	router := gin.Default()
 	models.ConnectDatabase()
