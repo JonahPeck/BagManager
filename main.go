@@ -1,7 +1,8 @@
 package main
 
 import (
-	"JonahPeck/BagManager/BagManager/models"
+	"BagManager/controllers"
+	"BagManager/models"
 
 	"github.com/gin-gonic/gin"
 )
@@ -10,7 +11,10 @@ import (
 
 func main() {
 	router := gin.Default()
+
 	models.ConnectDatabase()
+
+	router.POST("/posts", controllers.CreatePost)
 
 	router.Run("localhost:8080")
 }
