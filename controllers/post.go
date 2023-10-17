@@ -1,6 +1,7 @@
 package controllers
 
 import (
+	"BagManager/log"
 	"BagManager/models"
 	"net/http"
 
@@ -13,8 +14,11 @@ type CreatePostInput struct {
 }
 
 func CreatePost(c *gin.Context) {
+	logger := log.LogFromCtx(c)
+
 	var input CreatePostInput
 	if err := c.ShouldBindJSON(&input); err != nil {
+		logger.WithError(err).Error("failed to bind json")
 		c.AbortWithStatusJSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
