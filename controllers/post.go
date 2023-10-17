@@ -15,7 +15,7 @@ type CreatePostInput struct {
 
 func CreatePost(c *gin.Context) {
 	logger := log.LogFromCtx(c)
-
+	logger.Info("Creating Post")
 	var input CreatePostInput
 	if err := c.ShouldBindJSON(&input); err != nil {
 		logger.WithError(err).Error("failed to bind json")
@@ -24,7 +24,7 @@ func CreatePost(c *gin.Context) {
 	}
 	post := models.Post{Title: input.Title, Content: input.Content}
 	models.DB.Create(&post)
-
+	logger.Info("successfully created post")
 	c.JSON(http.StatusOK, gin.H{"data": post})
 }
 
