@@ -28,6 +28,7 @@ func CreatePost(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{"data": post})
 }
 
+// use raw instead of form-data within Postman
 func FindPosts(c *gin.Context) {
 	var posts []models.Post
 	models.DB.Find(&posts)
@@ -67,4 +68,14 @@ func UpdatePost(c *gin.Context) {
 
 	models.DB.Model(&post).Updates(&updatedPost)
 	c.JSON(http.StatusOK, gin.H{"data": post})
+}
+
+func DeletePost(c *gin.Context) {
+	var post models.Post
+	if err := models.DB.Where("id = ?", c.Param("id")).First(&post).Error; err != nil {
+		c.AbortWithStatusJSON(http.StatusNotFound, gin.H{"error": "record not found"})
+		return
+	}
+	models.DB.Delete(&post)
+	c.JSON(http.StatusOK, gin.H{"data": "successfully deleted"})
 }
