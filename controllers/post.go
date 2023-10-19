@@ -79,3 +79,5 @@ func DeletePost(c *gin.Context) {
 	models.DB.Delete(&post)
 	c.JSON(http.StatusOK, gin.H{"data": "successfully deleted"})
 }
+
+//next step to connect this to the frontend
