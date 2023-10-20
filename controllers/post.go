@@ -80,4 +80,4 @@ func DeletePost(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{"data": "successfully deleted"})
 }
 
-//next step to connect this to the frontend
+// connect this to the frontend
