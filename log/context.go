@@ -22,4 +22,4 @@ func LogFromCtx(ctx context.Context) *Logger {
 	return &Logger{logger: slog.New(slog.NewTextHandler(os.Stdout))}
 }
 
-//frontend connection frontend connection
+//frontend connection frontend connection front
